@@ -1,0 +1,60 @@
+# Blender MTL File: 'None'
+# Material Count: 5
+
+newmtl lambert59.001
+Ns 72.549020
+Ka 0.000000 0.000000 0.000000
+Kd 0.107374 0.107374 0.107374
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 0
+map_Kd occhio.png
+
+newmtl lambert59_SEY00.BMP.000
+Ns 72.549020
+Ka 0.000000 0.000000 0.000000
+Kd 0.107374 0.107374 0.107374
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 0
+map_Kd SEY_00 body.png
+map_Bump SEY_01 body.png
+refl armor reflex.png
+
+newmtl lambert59_SEY_00_body.png.000
+Ns 72.549020
+Ka 0.000000 0.000000 0.000000
+Kd 0.107374 0.107374 0.107374
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 0
+map_Kd SEY_00 body.png
+map_Bump SEY_01 body.png
+refl skin toon.png
+
+newmtl lambert59_SEY_00_body.png.003_SEY_00_body.png.002
+Ns 72.549020
+Ka 0.000000 0.000000 0.000000
+Kd 0.107374 0.107374 0.107374
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 0
+map_Kd SEY_00 body.png
+map_Bump SEY_01 body.png
+refl leg toon.png
+
+newmtl lambert59_Seiya_hair.bmp.000
+Ns 72.549020
+Ka 0.000000 0.000000 0.000000
+Kd 0.107374 0.107374 0.107374
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 0
+map_Kd SEY_00 body.png
+map_Bump SEY_01 body.png
+refl hair toon.png

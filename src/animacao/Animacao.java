@@ -70,13 +70,18 @@ public class Animacao extends JFrame {
         Scene capitao2 = null;
         Scene hulk = null;
         Scene doom = null;
+        Scene ironMan = null;
+        Scene thor = null;
+        
 
         try {
             capitao = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/America/Captain_America_The_First_Avenger.obj");
             capitao2 = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/America/capitao.obj");
             hulk = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Hulk/hulk.obj");
             doom = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Doom/Doctor_Doom.obj");
-
+            ironMan = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Ironman/Ironman.obj");
+            thor = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Thor/Thor_Avengers.obj");
+            
         } catch (Exception e) {
             System.out.println("Error Loading Images:" + e);
         }
@@ -104,7 +109,19 @@ public class Animacao extends JFrame {
         doomObject.rotY(Math.PI * 1.5);
         doomObject.setScale(0.85);
         doomObject.setTranslation(new Vector3f(2f, -1.4f, -9f));
-
+        
+        //modificações ironman
+        Transform3D ironManObject = new Transform3D();
+        ironManObject.rotY(Math.PI * 1.82);
+        ironManObject.setScale(0.85);
+        ironManObject.setTranslation(new Vector3f(8f, -1.4f, -30f));
+        
+        //modificações thor
+        Transform3D thorObject = new Transform3D();
+        thorObject.rotY(Math.PI * 1.82);
+        thorObject.setScale(0.85);
+        thorObject.setTranslation(new Vector3f(10f, -3f, -30f));
+             
         //criação do grupo capitao
         TransformGroup capitaoGroup = new TransformGroup(capitaoObject);
         TransformGroup allCapitaoObjects = new TransformGroup();
@@ -304,13 +321,34 @@ public class Animacao extends JFrame {
         allDoomObjects1.addChild(allDoomObjects2);
         allDoomObjects2.addChild(doomMovement2);
         allDoomObjects2.addChild(doom.getSceneGroup());
-
+        
+        //criação do grupo IronMan
+        TransformGroup ironManGroup = new TransformGroup(ironManObject);
+        //movimento do ironMan
+        TransformGroup allIronManObjects = new TransformGroup();
+        Alpha alphaIronMan = new Alpha(1, Alpha.INCREASING_ENABLE, 6000, 1000, 2000, 100, 0, 0, 0, 0);
+        Transform3D axisIronMan = new Transform3D();
+        axisIronMan.rotZ(Math.PI / 2);
+        PositionInterpolator ironManMovement = new PositionInterpolator
+                (alphaIronMan, allIronManObjects, axisIronMan, 0f, 5f);
+        allIronManObjects.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        ironManMovement.setSchedulingBounds(boundsCapitao);
+        ironManGroup.addChild(allIronManObjects);
+        allIronManObjects.addChild(ironManMovement);
+        allIronManObjects.addChild(ironMan.getSceneGroup());
+        
+        //criação do grupo thor
+        TransformGroup thorGroup = new TransformGroup(thorObject);
+        thorGroup.addChild(thor.getSceneGroup());
+        
         //Add everything to the scene.
         BranchGroup theScene = new BranchGroup();
         theScene.addChild(capitaoGroup);
         theScene.addChild(capitao2Group);
         theScene.addChild(hulkGroup);
         theScene.addChild(doomGroup);
+        theScene.addChild(ironManGroup);
+        theScene.addChild(thorGroup);
 
         //The bounding region for the background.
         BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), Double.MAX_VALUE);

@@ -1,0 +1,47 @@
+# Blender MTL File: 'None'
+# Material Count: 4
+
+newmtl lambert7.001
+Ns 84.313725
+Ka 0.000000 0.000000 0.000000
+Kd 0.262144 0.262144 0.262144
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd ARD_00.png
+
+newmtl lambert7_ARD.png.000
+Ns 84.313725
+Ka 0.000000 0.000000 0.000000
+Kd 0.262144 0.262144 0.262144
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd body taurus.png
+map_Bump body taurus_n.png
+refl armor reflex.png
+
+newmtl lambert7_body.png.002
+Ns 84.313725
+Ka 0.000000 0.000000 0.000000
+Kd 0.262144 0.262144 0.262144
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd body taurus.png
+map_Bump body taurus_n.png
+refl skin toon.png
+
+newmtl lambert7_body.png.003
+Ns 84.313725
+Ka 0.000000 0.000000 0.000000
+Kd 0.262144 0.262144 0.262144
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd body taurus.png
+refl leg toon.png

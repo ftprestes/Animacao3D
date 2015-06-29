@@ -72,8 +72,7 @@ public class Animacao extends JFrame {
         Scene doom = null;
         Scene ironMan = null;
         Scene thor = null;
-        
-
+       
         try {
             capitao = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/America/Captain_America_The_First_Avenger.obj");
             capitao2 = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/America/capitao.obj");

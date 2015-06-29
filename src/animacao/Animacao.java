@@ -67,11 +67,13 @@ public class Animacao extends JFrame {
 
         ObjectFile f = new ObjectFile(ObjectFile.RESIZE);
         Scene capitao = null;
+        Scene capitao2 = null;
         Scene hulk = null;
         Scene doom = null;
 
         try {
             capitao = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/America/Captain_America_The_First_Avenger.obj");
+            capitao2 = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/America/capitao.obj");
             hulk = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Hulk/Hulk_Avengers.obj");
             doom = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Doom/Doctor_Doom.obj");
 
@@ -79,11 +81,17 @@ public class Animacao extends JFrame {
             System.out.println("Error Loading Images:" + e);
         }
 
-        //modificações capitao america
+        //modificações capitao america1
         Transform3D capitaoObject = new Transform3D();
         capitaoObject.rotY(Math.PI * 0.5);
         capitaoObject.setScale(0.85);
         capitaoObject.setTranslation(new Vector3f(-3f, -1.4f, -9f));
+
+        //modificações capitao america2
+        Transform3D capitao2Object = new Transform3D();
+        capitao2Object.rotY(Math.PI * 1.5);
+        capitao2Object.setScale(0.85);
+        capitao2Object.setTranslation(new Vector3f(6f, -1.4f, -9f));
 
         //modificações hulk
         Transform3D hulkObject = new Transform3D();
@@ -101,17 +109,13 @@ public class Animacao extends JFrame {
         TransformGroup capitaoGroup = new TransformGroup(capitaoObject);
         TransformGroup allCapitaoObjects = new TransformGroup();
         //movimento do capitão    
-        //RotPosScalePathInterpolator(Alpha alpha, TransformGroup target, 
-        //Transform3D axisOfRotPosScale, float[] knots, Quat4f[] quats, Point3f[] 
-        //positions, float[] scales)
-        Alpha alphaCapitao = new Alpha(-1, Alpha.INCREASING_ENABLE, 1000, 1000, 4000, 100, 0, 0, 0, 0);
+        Alpha alphaCapitao = new Alpha(1, Alpha.INCREASING_ENABLE, 1000, 1000, 4000, 100, 0, 0, 0, 0);
         Transform3D axisCapitao = new Transform3D();
         float[] knotsCapitao = {0.0f, 0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f};
         float[] scalesCapitao = {1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f};
 
         Quat4f[] quatsCapitao = new Quat4f[11];
         Point3f[] positionsCapitao = new Point3f[11];
-
         quatsCapitao[0] = new Quat4f(0f, 0f, 0f, 0f);
         quatsCapitao[1] = new Quat4f(0f, 0f, 0f, 0f);
         quatsCapitao[2] = new Quat4f(1f, 0f, 0f, 0f);
@@ -123,7 +127,6 @@ public class Animacao extends JFrame {
         quatsCapitao[8] = new Quat4f(0f, -8f, 0f, 0f);
         quatsCapitao[9] = new Quat4f(0f, -9f, 0f, 0f);
         quatsCapitao[10] = new Quat4f(0f, -10f, 0f, 0f);
-
         positionsCapitao[0] = new Point3f(0f, 0f, 0f);
         positionsCapitao[1] = new Point3f(0f, 1f, 1f);
         positionsCapitao[2] = new Point3f(0f, 2f, 2f);
@@ -144,6 +147,21 @@ public class Animacao extends JFrame {
         capitaoGroup.addChild(allCapitaoObjects);
         allCapitaoObjects.addChild(capitaoMovement);
         allCapitaoObjects.addChild(capitao.getSceneGroup());
+        
+        //criação do grupo capitão2
+        TransformGroup capitao2Group = new TransformGroup(capitao2Object);
+        TransformGroup allCapitao2Objects = new TransformGroup();
+        //movimento do capitão2
+        Alpha alphaCapitao2 = new Alpha(1, Alpha.INCREASING_ENABLE, 6000, 1000, 2000, 100, 0, 0, 0, 0);
+        Transform3D axisCapitao2 = new Transform3D();
+        axisCapitao2.rotY(Math.PI/2);
+        PositionInterpolator capitao2Movement = new PositionInterpolator
+            (alphaCapitao2, allCapitao2Objects, axisCapitao2, 0f, -3.8f);
+        allCapitao2Objects.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        capitao2Movement.setSchedulingBounds(boundsCapitao);
+        capitao2Group.addChild(allCapitao2Objects);
+        allCapitao2Objects.addChild(capitao2Movement);
+        allCapitao2Objects.addChild(capitao2.getSceneGroup());
 
         //criação do grupo hulk
         TransformGroup hulkGroup = new TransformGroup(hulkObject);
@@ -151,11 +169,24 @@ public class Animacao extends JFrame {
 
         //criação do grupo doom
         TransformGroup doomGroup = new TransformGroup(doomObject);
-        doomGroup.addChild(doom.getSceneGroup());
-
+        TransformGroup allDoomObjects1 = new TransformGroup();
+        //movimento de rotação do doom
+        Alpha alphaDoom1 = new Alpha(1, Alpha.INCREASING_ENABLE, 2000, 2000, 2000, 4000, 0, 0, 0, 0);
+        Transform3D axisDoom1 = new Transform3D();
+        axisDoom1.rotY(Math.PI/2);
+        RotationInterpolator doomMovement1 = new RotationInterpolator
+            (alphaDoom1, allDoomObjects1, axisDoom1, 0, 3);
+        allDoomObjects1.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        doomMovement1.setSchedulingBounds(boundsCapitao);
+        doomGroup.addChild(allDoomObjects1);
+        allDoomObjects1.addChild(doomMovement1);
+        allDoomObjects1.addChild(doom.getSceneGroup());
+        //movimento de "ir para tras com pathInterpolator"
+        
         //Add everything to the scene.
         BranchGroup theScene = new BranchGroup();
         theScene.addChild(capitaoGroup);
+        theScene.addChild(capitao2Group);
         //theScene.addChild(hulkGroup);
         theScene.addChild(doomGroup);
 

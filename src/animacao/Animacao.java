@@ -74,7 +74,7 @@ public class Animacao extends JFrame {
         try {
             capitao = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/America/Captain_America_The_First_Avenger.obj");
             capitao2 = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/America/capitao.obj");
-            hulk = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Hulk/Hulk_Avengers.obj");
+            hulk = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Hulk/hulk.obj");
             doom = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Doom/Doctor_Doom.obj");
 
         } catch (Exception e) {
@@ -95,9 +95,9 @@ public class Animacao extends JFrame {
 
         //modificações hulk
         Transform3D hulkObject = new Transform3D();
-        hulkObject.rotY(Math.PI * 1.5);
-        hulkObject.setScale(0.75);
-        hulkObject.setTranslation(new Vector3f(3f, -1.4f, -9f));
+        hulkObject.rotY(Math.PI * 2);
+        hulkObject.setScale(1.4);
+        hulkObject.setTranslation(new Vector3f(-2f, -4f, -51f));
 
         //modificações doom
         Transform3D doomObject = new Transform3D();
@@ -124,9 +124,9 @@ public class Animacao extends JFrame {
         quatsCapitao[5] = new Quat4f(4f, -4f, 0f, 3f);
         quatsCapitao[6] = new Quat4f(5f, -6f, 0f, 4f);
         quatsCapitao[7] = new Quat4f(6f, -7f, 0f, 5f);
-        quatsCapitao[8] = new Quat4f(0f, -8f, 0f, 0f);
-        quatsCapitao[9] = new Quat4f(0f, -9f, 0f, 0f);
-        quatsCapitao[10] = new Quat4f(0f, -10f, 0f, 0f);
+        quatsCapitao[8] = new Quat4f(0f, -8f, 0f, 2f);
+        quatsCapitao[9] = new Quat4f(0f, -9f, 0f, -2f);
+        quatsCapitao[10] = new Quat4f(0f, -10f, 0f, 2f);
         positionsCapitao[0] = new Point3f(0f, 0f, 0f);
         positionsCapitao[1] = new Point3f(0f, 1f, 1f);
         positionsCapitao[2] = new Point3f(0f, 2f, 2f);
@@ -147,16 +147,15 @@ public class Animacao extends JFrame {
         capitaoGroup.addChild(allCapitaoObjects);
         allCapitaoObjects.addChild(capitaoMovement);
         allCapitaoObjects.addChild(capitao.getSceneGroup());
-        
+
         //criação do grupo capitão2
         TransformGroup capitao2Group = new TransformGroup(capitao2Object);
         TransformGroup allCapitao2Objects = new TransformGroup();
         //movimento do capitão2
         Alpha alphaCapitao2 = new Alpha(1, Alpha.INCREASING_ENABLE, 6000, 1000, 2000, 100, 0, 0, 0, 0);
         Transform3D axisCapitao2 = new Transform3D();
-        axisCapitao2.rotY(Math.PI/2);
-        PositionInterpolator capitao2Movement = new PositionInterpolator
-            (alphaCapitao2, allCapitao2Objects, axisCapitao2, 0f, -3.8f);
+        axisCapitao2.rotY(Math.PI / 2);
+        PositionInterpolator capitao2Movement = new PositionInterpolator(alphaCapitao2, allCapitao2Objects, axisCapitao2, 0f, -3.8f);
         allCapitao2Objects.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
         capitao2Movement.setSchedulingBounds(boundsCapitao);
         capitao2Group.addChild(allCapitao2Objects);
@@ -165,29 +164,152 @@ public class Animacao extends JFrame {
 
         //criação do grupo hulk
         TransformGroup hulkGroup = new TransformGroup(hulkObject);
-        hulkGroup.addChild(hulk.getSceneGroup());
-
+        TransformGroup allHulkObjects = new TransformGroup();
+        //movimento do hulk
+        Alpha alphaHulk = new Alpha(1, Alpha.INCREASING_ENABLE, 6000, 2000, 4000, 100, 0, 0, 0, 0);
+        Transform3D axisHulk = new Transform3D();
+        axisHulk.rotZ((float) Math.toRadians(720));
+        float[] knotsHulk = {0.0f, 0.05f, 0.1f, 0.15f, 0.2f, 0.25f, 0.3f, 0.35f, 0.4f, 0.45f, 0.5f, 0.55f, 0.6f, 0.65f, 0.7f, 0.75f, 0.8f, 0.85f, 0.9f, 0.95f, 1f};
+        float[] scalesHulk = {1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f};
+        Quat4f[] quatsHulk = new Quat4f[21];
+        Point3f[] positionsHulk = new Point3f[21];
+        
+        quatsHulk[0] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[1] = new Quat4f(0f, 0f, 0f, 0.f);
+        quatsHulk[2] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[3] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[4] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[5] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[6] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[7] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[8] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[9] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[10] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[11] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[12] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[13] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[14] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[15] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[16] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[17] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[18] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[19] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[20] = new Quat4f(0f, 0f, 0f, 0f);
+            
+        positionsHulk[0] = new Point3f(0f, 0f, 0f);
+        positionsHulk[1] = new Point3f(0f, 0.1f, 2f);
+        positionsHulk[2] = new Point3f(0f, 0.3f, 4f);
+        positionsHulk[3] = new Point3f(0f, 0.5f, 6f);
+        positionsHulk[4] = new Point3f(0f, 0.7f, 8f);
+        positionsHulk[5] = new Point3f(0f, 0.9f, 10f);
+        positionsHulk[6] = new Point3f(0f, 1.1f, 12f);
+        positionsHulk[7] = new Point3f(0f, 1.3f, 14f);
+        positionsHulk[8] = new Point3f(0f, 1.5f, 16f);
+        positionsHulk[9] = new Point3f(0f, 1.7f, 18f);
+        positionsHulk[10] = new Point3f(0f, 1.9f, 20f);
+        positionsHulk[11] = new Point3f(0f, 1.9f, 22f);
+        positionsHulk[12] = new Point3f(0f, 1.9f, 24f);
+        positionsHulk[13] = new Point3f(0f, 1.9f, 26f);
+        positionsHulk[14] = new Point3f(0f, 1.9f, 29f);
+        positionsHulk[15] = new Point3f(0f, 1.9f, 29f);
+        positionsHulk[16] = new Point3f(0f, 1.9f, 29f);
+        positionsHulk[17] = new Point3f(0f, 1.9f, 29f);
+        positionsHulk[18] = new Point3f(0f, 1.9f, 29f);
+        positionsHulk[19] = new Point3f(0f, 1.9f, 29f);
+        positionsHulk[20] = new Point3f(0f, 1.9f, 29f);   
+        
+        RotPosScalePathInterpolator hulkMovement = new RotPosScalePathInterpolator
+        (alphaHulk, allHulkObjects, axisHulk, knotsHulk, quatsHulk,
+                positionsHulk, scalesHulk);
+        BoundingSphere boundsHulk = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), 100.0);
+        allHulkObjects.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        hulkMovement.setSchedulingBounds(boundsHulk);
+        hulkGroup.addChild(allHulkObjects);
+        allHulkObjects.addChild(hulkMovement);
+        allHulkObjects.addChild(hulk.getSceneGroup());
+        
         //criação do grupo doom
         TransformGroup doomGroup = new TransformGroup(doomObject);
-        TransformGroup allDoomObjects1 = new TransformGroup();
         //movimento de rotação do doom
+        TransformGroup allDoomObjects1 = new TransformGroup();
         Alpha alphaDoom1 = new Alpha(1, Alpha.INCREASING_ENABLE, 2000, 2000, 2000, 4000, 0, 0, 0, 0);
         Transform3D axisDoom1 = new Transform3D();
-        axisDoom1.rotY(Math.PI/2);
-        RotationInterpolator doomMovement1 = new RotationInterpolator
-            (alphaDoom1, allDoomObjects1, axisDoom1, 0, 3);
+        axisDoom1.rotY(Math.PI / 2);
+        RotationInterpolator doomMovement1 = new RotationInterpolator(alphaDoom1, allDoomObjects1, axisDoom1, 0, 3);
         allDoomObjects1.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
         doomMovement1.setSchedulingBounds(boundsCapitao);
         doomGroup.addChild(allDoomObjects1);
         allDoomObjects1.addChild(doomMovement1);
-        allDoomObjects1.addChild(doom.getSceneGroup());
-        //movimento de "ir para tras com pathInterpolator"
+        //allDoomObjects1.addChild(doom.getSceneGroup());
+
+        //movimento de "ir para trás do doom com pathInterpolator"
+        TransformGroup allDoomObjects2 = new TransformGroup();
+        Alpha alphaDoom2 = new Alpha(1, Alpha.INCREASING_ENABLE, 6700, 2000, 4000, 100, 0, 0, 0, 0);
+
+        Transform3D axisDoom2 = new Transform3D();
+        float[] knotsDoom = {0.0f, 0.05f, 0.1f, 0.15f, 0.2f, 0.25f, 0.3f, 0.35f, 0.4f, 0.45f, 0.5f, 0.55f, 0.6f, 0.65f, 0.7f, 0.75f, 0.8f, 0.85f, 0.9f, 0.95f, 1f};
+        float[] scalesDoom = {1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f};
+        Quat4f[] quatsDoom = new Quat4f[21];
+        Point3f[] positionsDoom = new Point3f[21];
         
+        quatsDoom[0] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[1] = new Quat4f(0f, 0f, 0f, 0.f);
+        quatsDoom[2] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[3] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[4] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[5] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[6] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[7] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[8] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[9] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[10] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[11] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[12] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[13] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[14] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[15] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[16] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[17] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[18] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[19] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[20] = new Quat4f(0f, 0f, 0f, 0f);
+
+        positionsDoom[0] = new Point3f(0f, 0f, 0f);
+        positionsDoom[1] = new Point3f(0f, 0f, -0.5f);
+        positionsDoom[2] = new Point3f(0f, 0f, -1f);
+        positionsDoom[3] = new Point3f(0f, 0f, -1.5f);
+        positionsDoom[4] = new Point3f(0f, 0f, -2f);
+        positionsDoom[5] = new Point3f(0f, 0f, -2.5f);
+        positionsDoom[6] = new Point3f(0f, 0f, -3f);
+        positionsDoom[7] = new Point3f(0f, 0f, -3.5f);
+        positionsDoom[8] = new Point3f(0f, 0f, -4f);
+        positionsDoom[9] = new Point3f(0f, 0f, -4.5f);
+        positionsDoom[10] = new Point3f(0f, 0f, -5f);
+        positionsDoom[11] = new Point3f(-1f, 0f, -5f);
+        positionsDoom[12] = new Point3f(-2f, 0f, -5f);
+        positionsDoom[13] = new Point3f(-3f, 0f, -5f);
+        positionsDoom[14] = new Point3f(-4f, 0f, -5f);
+        positionsDoom[15] = new Point3f(-5f, 0f, -5f);
+        positionsDoom[16] = new Point3f(-6f, 0f, -5f);
+        positionsDoom[17] = new Point3f(-7f, 0f, -5f);
+        positionsDoom[18] = new Point3f(-8f, 0f, -5f);
+        positionsDoom[19] = new Point3f(-9f, 0f, -5f);
+        positionsDoom[20] = new Point3f(-10f, 0f, -5f);
+
+        RotPosScalePathInterpolator doomMovement2 = new RotPosScalePathInterpolator(alphaDoom2, allDoomObjects2, axisDoom2, knotsDoom, quatsDoom,
+                positionsDoom, scalesDoom);
+        BoundingSphere boundsDoom = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), 100.0);
+        allDoomObjects2.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        doomMovement2.setSchedulingBounds(boundsDoom);
+        allDoomObjects1.addChild(allDoomObjects2);
+        allDoomObjects2.addChild(doomMovement2);
+        allDoomObjects2.addChild(doom.getSceneGroup());
+
         //Add everything to the scene.
         BranchGroup theScene = new BranchGroup();
         theScene.addChild(capitaoGroup);
         theScene.addChild(capitao2Group);
-        //theScene.addChild(hulkGroup);
+        theScene.addChild(hulkGroup);
         theScene.addChild(doomGroup);
 
         //The bounding region for the background.

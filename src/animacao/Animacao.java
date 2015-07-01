@@ -15,9 +15,6 @@ import java.util.logging.Logger;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- * An example for using an image loaded from a file as a background. This
- * program needs the file darkclouds.jpg.
- * 
 * @author Frank Klawonn Last change 17.07.2005
  */
 public class Animacao extends JFrame {
@@ -107,7 +104,7 @@ public class Animacao extends JFrame {
 
         //modificações hulk
         Transform3D hulkObject = new Transform3D();
-        hulkObject.rotY(Math.PI * 2);
+        hulkObject.rotY(Math.PI * 1);
         hulkObject.setScale(1.4);
         hulkObject.setTranslation(new Vector3f(-2f, -4f, -51f));
 
@@ -152,14 +149,14 @@ public class Animacao extends JFrame {
 
         Quat4f[] quatsCapitao = new Quat4f[11];
         Point3f[] positionsCapitao = new Point3f[11];
-        quatsCapitao[0] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsCapitao[1] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsCapitao[2] = new Quat4f(1f, 0f, 0f, 0f);
-        quatsCapitao[3] = new Quat4f(2f, 0f, 0f, 0f);
-        quatsCapitao[4] = new Quat4f(3f, -2f, 0f, 2f);
-        quatsCapitao[5] = new Quat4f(4f, -4f, 0f, 3f);
-        quatsCapitao[6] = new Quat4f(5f, -6f, 0f, 4f);
-        quatsCapitao[7] = new Quat4f(6f, -7f, 0f, 5f);
+        quatsCapitao[0] = new Quat4f(0f, 0f, 0f, 0.2f);
+        quatsCapitao[1] = new Quat4f(0f, 0f, 0f, 0.4f);
+        quatsCapitao[2] = new Quat4f(0f, 0f, 0f, 0.6f);
+        quatsCapitao[3] = new Quat4f(0f, 0f, 0f, 0.7f);
+        quatsCapitao[4] = new Quat4f(0f, -2f, 0f, 0.9f);
+        quatsCapitao[5] = new Quat4f(0f, -4f, 0f, 1f);
+        quatsCapitao[6] = new Quat4f(0f, -6f, 0f, 2f);
+        quatsCapitao[7] = new Quat4f(0f, -7f, 0f, 3f);
         quatsCapitao[8] = new Quat4f(0f, -8f, 0f, 2f);
         quatsCapitao[9] = new Quat4f(0f, -9f, 0f, -2f);
         quatsCapitao[10] = new Quat4f(0f, -10f, 0f, 2f);
@@ -204,55 +201,55 @@ public class Animacao extends JFrame {
         //movimento do hulk
         Alpha alphaHulk = new Alpha(1, Alpha.INCREASING_ENABLE, 6000, 2000, 4000, 100, 0, 0, 0, 0);
         Transform3D axisHulk = new Transform3D();
-        axisHulk.rotZ((float) Math.toRadians(720));
+        //axisHulk.rotZ((float) Math.toRadians(180));
         float[] knotsHulk = {0.0f, 0.05f, 0.1f, 0.15f, 0.2f, 0.25f, 0.3f, 0.35f, 0.4f, 0.45f, 0.5f, 0.55f, 0.6f, 0.65f, 0.7f, 0.75f, 0.8f, 0.85f, 0.9f, 0.95f, 1f};
-        float[] scalesHulk = {1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f};
+        float[] scalesHulk = {1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 2f, 1f, 1f, 1f, 1f, 1f, 1f};
         Quat4f[] quatsHulk = new Quat4f[21];
         Point3f[] positionsHulk = new Point3f[21];
 
-        quatsHulk[0] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[1] = new Quat4f(0f, 0f, 0f, 0.f);
-        quatsHulk[2] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[3] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[4] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[5] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[6] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[7] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[8] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[9] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[10] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[11] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[12] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[13] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[14] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[15] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[16] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[17] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[18] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[19] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsHulk[20] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsHulk[0] = new Quat4f(0f, 1f, 0f, 0.3f);
+        quatsHulk[1] = new Quat4f(0f, 1f, 0f, -0.3f);
+        quatsHulk[2] = new Quat4f(0f, 1f, 0f, 0.3f);
+        quatsHulk[3] = new Quat4f(0f, 1f, 0f, -0.3f);
+        quatsHulk[4] = new Quat4f(0f, 1f, 0f, 0.3f);
+        quatsHulk[5] = new Quat4f(0f, 1f, 0f, -0.3f);
+        quatsHulk[6] = new Quat4f(0f, 1f, 0f, 0.3f);
+        quatsHulk[7] = new Quat4f(0f, 1f, 0f, -0.3f);
+        quatsHulk[8] = new Quat4f(0f, 1f, 0f, 0.3f);
+        quatsHulk[9] = new Quat4f(0f, 1f, 0f, -0.3f);
+        quatsHulk[10] = new Quat4f(0f, 1f, 0f, 0.3f);
+        quatsHulk[11] = new Quat4f(0f, 1f, 0f, -0.3f);
+        quatsHulk[12] = new Quat4f(0f, 1f, 0f, 0.3f);
+        quatsHulk[13] = new Quat4f(0f, 1f, 0f, -0.3f);
+        quatsHulk[14] = new Quat4f(0f, 1f, 0f, 0.3f);
+        quatsHulk[15] = new Quat4f(0f, 1f, 0f, -0.3f);
+        quatsHulk[16] = new Quat4f(0f, 1f, 0f, 0f);
+        quatsHulk[17] = new Quat4f(0f, 1f, 0f, 0f);
+        quatsHulk[18] = new Quat4f(0f, 1f, 0f, 0f);
+        quatsHulk[19] = new Quat4f(0f, 1f, 0f, 0f);
+        quatsHulk[20] = new Quat4f(0f, 1f, 0f, 0f);
 
         positionsHulk[0] = new Point3f(0f, 0f, 0f);
-        positionsHulk[1] = new Point3f(0f, 0.1f, 2f);
-        positionsHulk[2] = new Point3f(0f, 0.3f, 4f);
-        positionsHulk[3] = new Point3f(0f, 0.5f, 6f);
-        positionsHulk[4] = new Point3f(0f, 0.7f, 8f);
-        positionsHulk[5] = new Point3f(0f, 0.9f, 10f);
-        positionsHulk[6] = new Point3f(0f, 1.1f, 12f);
-        positionsHulk[7] = new Point3f(0f, 1.3f, 14f);
-        positionsHulk[8] = new Point3f(0f, 1.5f, 16f);
-        positionsHulk[9] = new Point3f(0f, 1.7f, 18f);
-        positionsHulk[10] = new Point3f(0f, 1.9f, 20f);
-        positionsHulk[11] = new Point3f(0f, 1.9f, 22f);
-        positionsHulk[12] = new Point3f(0f, 1.9f, 24f);
-        positionsHulk[13] = new Point3f(0f, 1.9f, 26f);
-        positionsHulk[14] = new Point3f(0f, 1.9f, 29f);
-        positionsHulk[15] = new Point3f(0f, 1.9f, 29f);
-        positionsHulk[16] = new Point3f(0f, 1.9f, 29f);
-        positionsHulk[17] = new Point3f(0f, 1.9f, 29f);
-        positionsHulk[18] = new Point3f(0f, 1.9f, 29f);
-        positionsHulk[19] = new Point3f(0f, 1.9f, 29f);
-        positionsHulk[20] = new Point3f(0f, 1.9f, 29f);
+        positionsHulk[1] = new Point3f(0f, 0.1f, -2f);
+        positionsHulk[2] = new Point3f(0f, 0.3f, -4f);
+        positionsHulk[3] = new Point3f(0f, 0.5f, -6f);
+        positionsHulk[4] = new Point3f(0f, 0.7f, -8f);
+        positionsHulk[5] = new Point3f(0f, 0.9f, -10f);
+        positionsHulk[6] = new Point3f(0f, 1.1f, -12f);
+        positionsHulk[7] = new Point3f(0f, 1.3f, -14f);
+        positionsHulk[8] = new Point3f(0f, 1.5f, -16f);
+        positionsHulk[9] = new Point3f(0f, 1.7f, -18f);
+        positionsHulk[10] = new Point3f(0f, 1.9f, -20f);
+        positionsHulk[11] = new Point3f(0f, 1.9f, -22f);
+        positionsHulk[12] = new Point3f(0f, 1.9f, -24f);
+        positionsHulk[13] = new Point3f(0f, 1.9f, -26f);
+        positionsHulk[14] = new Point3f(0f, 1.9f, -29f);
+        positionsHulk[15] = new Point3f(0f, 1.9f, -29f);
+        positionsHulk[16] = new Point3f(0f, 1.9f, -29f);
+        positionsHulk[17] = new Point3f(0f, 1.9f, -29f);
+        positionsHulk[18] = new Point3f(0f, 1.9f, -29f);
+        positionsHulk[19] = new Point3f(0f, 1.9f, -29f);
+        positionsHulk[20] = new Point3f(0f, 1.9f, -29f);
 
         RotPosScalePathInterpolator hulkMovement = new RotPosScalePathInterpolator(alphaHulk, allHulkObjects, axisHulk, knotsHulk, quatsHulk,
                 positionsHulk, scalesHulk);
@@ -297,17 +294,17 @@ public class Animacao extends JFrame {
         quatsDoom[7] = new Quat4f(0f, 0f, 0f, 0f);
         quatsDoom[8] = new Quat4f(0f, 0f, 0f, 0f);
         quatsDoom[9] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsDoom[10] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsDoom[11] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsDoom[12] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsDoom[13] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsDoom[14] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsDoom[15] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsDoom[16] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsDoom[17] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsDoom[18] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsDoom[19] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsDoom[20] = new Quat4f(0f, 0f, 0f, 0f);
+        quatsDoom[10] = new Quat4f(0f, 1f, 0f, 1.5f);
+        quatsDoom[11] = new Quat4f(0f, 1f, 0f, 1.5f);
+        quatsDoom[12] = new Quat4f(0f, 1f, 0f, 1.5f);
+        quatsDoom[13] = new Quat4f(0f, 1f, 0f, 1.5f);
+        quatsDoom[14] = new Quat4f(0f, 1f, 0f, 1.5f);
+        quatsDoom[15] = new Quat4f(0f, 1f, 0f, 1.5f);
+        quatsDoom[16] = new Quat4f(0f, 1f, 0f, 1.5f);
+        quatsDoom[17] = new Quat4f(0f, 1f, 0f, 1.5f);
+        quatsDoom[18] = new Quat4f(0f, 1f, 0f, 1.5f);
+        quatsDoom[19] = new Quat4f(0f, 1f, 0f, 1.5f);
+        quatsDoom[20] = new Quat4f(0f, 1f, 0f, 1.5f);
 
         positionsDoom[0] = new Point3f(0f, 0f, 0f);
         positionsDoom[1] = new Point3f(0f, 0f, -0.5f);
@@ -479,11 +476,11 @@ public class Animacao extends JFrame {
         bgLight.addChild(tfmLight);
 
         //Light no. 3: a spotlight.
-        Color3f lightColour3 = new Color3f(1f, 1f, 1f);
+        Color3f lightColour3 = new Color3f(0.2f, 0.2f, 0.2f);
         SpotLight light3 = new SpotLight(lightColour3,
                 new Point3f(0.0f, 0.0f, 1.0f),
                 new Point3f(0.1f, 0.1f, 0.01f),
-                new Vector3f(0.0f, 0.0f, -1.0f),
+                new Vector3f(0.0f, 0.0f, 0f),
                 (float) (Math.PI / 20),
                 0.0f);
 
@@ -491,7 +488,7 @@ public class Animacao extends JFrame {
         bgLight.addChild(light3);
 
         //Light no. 4: ambient light.
-        Color3f lightColour4 = new Color3f(0.2f, 0.2f, 0.2f);
+        Color3f lightColour4 = new Color3f(0.6f, 0.6f, 0.6f);
         AmbientLight light4 = new AmbientLight(lightColour4);
         light4.setInfluencingBounds(bounds);
         bgLight.addChild(light4);

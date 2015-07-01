@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import com.sun.j3d.loaders.*;
 import com.sun.j3d.loaders.objectfile.*;
 import com.sun.j3d.utils.geometry.Cone;
+import com.sun.j3d.utils.geometry.Sphere;
 import com.sun.j3d.utils.image.TextureLoader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,7 +55,10 @@ public class Animacao extends JFrame {
         setSize(1400, 700);
         getContentPane().add("Center", myCanvas3D);
         setVisible(true);
-
+        
+        Musica musica = new Musica("musica.wav");
+        musica.start();
+         
     }
 
     public static void main(String[] args) {
@@ -72,14 +76,18 @@ public class Animacao extends JFrame {
         Scene doom = null;
         Scene ironMan = null;
         Scene thor = null;
-       
+        Scene carro = null;
+        Scene spiderMan = null;
+        
         try {
             capitao = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/America/Captain_America_The_First_Avenger.obj");
             capitao2 = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/America/capitao.obj");
             hulk = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Hulk/hulk.obj");
+            carro = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Car/car.obj");
             doom = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Doom/Doctor_Doom.obj");
-            ironMan = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Ironman/Ironman.obj");
+            ironMan = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Ironman/ironMAn.obj");
             thor = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Thor/Thor_Avengers.obj");
+            spiderMan = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Spiderman/Spiderman.obj");
             
         } catch (Exception e) {
             System.out.println("Error Loading Images:" + e);
@@ -108,19 +116,31 @@ public class Animacao extends JFrame {
         doomObject.rotY(Math.PI * 1.5);
         doomObject.setScale(0.85);
         doomObject.setTranslation(new Vector3f(2f, -1.4f, -9f));
-        
+
         //modificações ironman
         Transform3D ironManObject = new Transform3D();
-        ironManObject.rotY(Math.PI * 1.82);
+        ironManObject.rotY(Math.PI * 2);
         ironManObject.setScale(0.85);
-        ironManObject.setTranslation(new Vector3f(8f, -1.4f, -30f));
-        
+        ironManObject.setTranslation(new Vector3f(4f, -1.4f, -30f));
+
         //modificações thor
         Transform3D thorObject = new Transform3D();
         thorObject.rotY(Math.PI * 1.82);
         thorObject.setScale(0.85);
         thorObject.setTranslation(new Vector3f(10f, -3f, -30f));
-             
+        
+        //modificações spiderMan
+        Transform3D spiderManObject = new Transform3D();
+        spiderManObject.rotY(Math.PI * 1.82);
+        spiderManObject.setScale(0.85);
+        spiderManObject.setTranslation(new Vector3f(12f, -3f, -30f));
+        
+        //modificações carro
+        Transform3D carroObject = new Transform3D();
+        carroObject.rotY(Math.PI * 0.7);
+        carroObject.setScale(5);
+        carroObject.setTranslation(new Vector3f(3f, -3f, -30f));
+       
         //criação do grupo capitao
         TransformGroup capitaoGroup = new TransformGroup(capitaoObject);
         TransformGroup allCapitaoObjects = new TransformGroup();
@@ -189,7 +209,7 @@ public class Animacao extends JFrame {
         float[] scalesHulk = {1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f};
         Quat4f[] quatsHulk = new Quat4f[21];
         Point3f[] positionsHulk = new Point3f[21];
-        
+
         quatsHulk[0] = new Quat4f(0f, 0f, 0f, 0f);
         quatsHulk[1] = new Quat4f(0f, 0f, 0f, 0.f);
         quatsHulk[2] = new Quat4f(0f, 0f, 0f, 0f);
@@ -211,7 +231,7 @@ public class Animacao extends JFrame {
         quatsHulk[18] = new Quat4f(0f, 0f, 0f, 0f);
         quatsHulk[19] = new Quat4f(0f, 0f, 0f, 0f);
         quatsHulk[20] = new Quat4f(0f, 0f, 0f, 0f);
-            
+
         positionsHulk[0] = new Point3f(0f, 0f, 0f);
         positionsHulk[1] = new Point3f(0f, 0.1f, 2f);
         positionsHulk[2] = new Point3f(0f, 0.3f, 4f);
@@ -232,10 +252,9 @@ public class Animacao extends JFrame {
         positionsHulk[17] = new Point3f(0f, 1.9f, 29f);
         positionsHulk[18] = new Point3f(0f, 1.9f, 29f);
         positionsHulk[19] = new Point3f(0f, 1.9f, 29f);
-        positionsHulk[20] = new Point3f(0f, 1.9f, 29f);   
-        
-        RotPosScalePathInterpolator hulkMovement = new RotPosScalePathInterpolator
-        (alphaHulk, allHulkObjects, axisHulk, knotsHulk, quatsHulk,
+        positionsHulk[20] = new Point3f(0f, 1.9f, 29f);
+
+        RotPosScalePathInterpolator hulkMovement = new RotPosScalePathInterpolator(alphaHulk, allHulkObjects, axisHulk, knotsHulk, quatsHulk,
                 positionsHulk, scalesHulk);
         BoundingSphere boundsHulk = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), 100.0);
         allHulkObjects.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
@@ -243,7 +262,7 @@ public class Animacao extends JFrame {
         hulkGroup.addChild(allHulkObjects);
         allHulkObjects.addChild(hulkMovement);
         allHulkObjects.addChild(hulk.getSceneGroup());
-        
+
         //criação do grupo doom
         TransformGroup doomGroup = new TransformGroup(doomObject);
         //movimento de rotação do doom
@@ -267,9 +286,9 @@ public class Animacao extends JFrame {
         float[] scalesDoom = {1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f};
         Quat4f[] quatsDoom = new Quat4f[21];
         Point3f[] positionsDoom = new Point3f[21];
-        
+
         quatsDoom[0] = new Quat4f(0f, 0f, 0f, 0f);
-        quatsDoom[1] = new Quat4f(0f, 0f, 0f, 0.f);
+        quatsDoom[1] = new Quat4f(0f, 0f, 0f, 0f);
         quatsDoom[2] = new Quat4f(0f, 0f, 0f, 0f);
         quatsDoom[3] = new Quat4f(0f, 0f, 0f, 0f);
         quatsDoom[4] = new Quat4f(0f, 0f, 0f, 0f);
@@ -320,26 +339,88 @@ public class Animacao extends JFrame {
         allDoomObjects1.addChild(allDoomObjects2);
         allDoomObjects2.addChild(doomMovement2);
         allDoomObjects2.addChild(doom.getSceneGroup());
-        
+
         //criação do grupo IronMan
         TransformGroup ironManGroup = new TransformGroup(ironManObject);
         //movimento do ironMan
         TransformGroup allIronManObjects = new TransformGroup();
-        Alpha alphaIronMan = new Alpha(1, Alpha.INCREASING_ENABLE, 6000, 1000, 2000, 100, 0, 0, 0, 0);
+        Alpha alphaIronMan = new Alpha(1, Alpha.INCREASING_ENABLE, 10000, 1000, 8000, 3000, 0, 0, 0, 0);
         Transform3D axisIronMan = new Transform3D();
-        axisIronMan.rotZ(Math.PI / 2);
-        PositionInterpolator ironManMovement = new PositionInterpolator
-                (alphaIronMan, allIronManObjects, axisIronMan, 0f, 5f);
+        //axisIronMan.rotZ(Math.PI / 2);
+        float[] knotsIronMan = {0f, 0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f, 1f};
+        Point3f[] positionsIronMan = new Point3f[11];
+        positionsIronMan[0] = new Point3f(0f, 0f, 5f);
+        positionsIronMan[1] = new Point3f(-2f, 3f, 7f);
+        positionsIronMan[2] = new Point3f(-4f, 3f, 8f);
+        positionsIronMan[3] = new Point3f(-6f, 3f, 10f);
+        positionsIronMan[4] = new Point3f(-8f, 3f, 13f);
+        positionsIronMan[5] = new Point3f(-10f, 3f, 10f);
+        positionsIronMan[6] = new Point3f(-8f, 3f, 8f);
+        positionsIronMan[7] = new Point3f(-7f, 3f, 7f);
+        positionsIronMan[8] = new Point3f(-6f, 3f, 5f);
+        positionsIronMan[9] = new Point3f(-5f, 3f, 5f);
+        positionsIronMan[10] = new Point3f(-5f, -1f, 5f);
+
+        PositionPathInterpolator ironManMovement = new PositionPathInterpolator(alphaIronMan, allIronManObjects, axisIronMan, knotsIronMan, positionsIronMan);
         allIronManObjects.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
-        ironManMovement.setSchedulingBounds(boundsCapitao);
+        ironManMovement.setSchedulingBounds(boundsHulk);
         ironManGroup.addChild(allIronManObjects);
         allIronManObjects.addChild(ironManMovement);
         allIronManObjects.addChild(ironMan.getSceneGroup());
-        
+
         //criação do grupo thor
         TransformGroup thorGroup = new TransformGroup(thorObject);
         thorGroup.addChild(thor.getSceneGroup());
         
+        //ciação do grupo spiderMan
+        TransformGroup spiderManGroup = new TransformGroup(spiderManObject);
+        spiderManGroup.addChild(spiderMan.getSceneGroup());
+        
+        //ciação do grupo carro
+        TransformGroup carroGoup = new TransformGroup(carroObject);
+        TransformGroup allCarroObjects = new TransformGroup();
+        //movimento do carro
+        Alpha alphaCarro = new Alpha(1, Alpha.INCREASING_ENABLE, 9200, 500, 2000, 10000, 0, 0, 0, 0);
+        Transform3D axisCarro = new Transform3D();   
+        PositionInterpolator carroMovement = new PositionInterpolator
+            (alphaCarro, allCarroObjects, axisCarro, 0f, -1f);
+        allCarroObjects.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        carroMovement.setSchedulingBounds(boundsHulk);
+        carroGoup.addChild(allCarroObjects);
+        allCarroObjects.addChild(carroMovement);
+        allCarroObjects.addChild(carro.getSceneGroup());
+        
+        //adição da luz 
+        Color3f ambientColourSphere = new Color3f(0.2f, 0.2f, 0.0f);
+        Color3f emissiveColourSphere = new Color3f(0.0f, 0.0f, 0.0f);
+        Color3f diffuseColourSphere = new Color3f(0.4f, 0.4f, 0.0f);
+        Color3f specularColourSphere = new Color3f(0.8f, 0.8f, 0.0f);
+        float shininessSphere = 120.0f;
+        Appearance sphereApp = new Appearance();
+        TransparencyAttributes ta1 = new TransparencyAttributes();
+        ta1.setTransparencyMode(TransparencyAttributes.BLENDED);
+        ta1.setTransparency(1);
+        sphereApp.setTransparencyAttributes(ta1);
+        sphereApp.setMaterial(new Material(ambientColourSphere, emissiveColourSphere,
+                diffuseColourSphere, specularColourSphere, shininessSphere));
+        Sphere mySphere = new Sphere(0.3f, Sphere.GENERATE_NORMALS, 100, sphereApp);
+        Transform3D tfSphere = new Transform3D();
+        //modificações luz
+         //Generate interpolated transparency.
+        
+        tfSphere.setScale(0.85);
+        tfSphere.setTranslation(new Vector3f(8f, -1.4f, -30f));
+        //grupo da luz
+        TransformGroup tgSphere = new TransformGroup(tfSphere);
+        tgSphere.addChild(mySphere);
+        TransformGroup allTgSphereObjects = new TransformGroup();
+        PositionPathInterpolator sphereMovement = new PositionPathInterpolator(alphaIronMan, allTgSphereObjects, axisIronMan, knotsIronMan, positionsIronMan);
+        allTgSphereObjects.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        sphereMovement.setSchedulingBounds(boundsHulk);
+
+        allTgSphereObjects.addChild(sphereMovement);
+        allTgSphereObjects.addChild(tgSphere);
+
         //Add everything to the scene.
         BranchGroup theScene = new BranchGroup();
         theScene.addChild(capitaoGroup);
@@ -348,7 +429,10 @@ public class Animacao extends JFrame {
         theScene.addChild(doomGroup);
         theScene.addChild(ironManGroup);
         theScene.addChild(thorGroup);
-
+        theScene.addChild(spiderManGroup);
+        theScene.addChild(carroGoup);
+        theScene.addChild(allTgSphereObjects);
+        
         //The bounding region for the background.
         BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), Double.MAX_VALUE);
         //Load the background image.
@@ -369,24 +453,48 @@ public class Animacao extends JFrame {
     public void addLight(SimpleUniverse su) {
 
         BranchGroup bgLight = new BranchGroup();
-
-        //Directional light.
         BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), Double.MAX_VALUE);
-        Color3f lightColour1 = new Color3f(1.0f, 1.0f, 1.0f);
-        Vector3f lightDir1 = new Vector3f(-1.0f, 0.0f, -0.1f);
-        DirectionalLight light1 = new DirectionalLight(lightColour1, lightDir1);
-        light1.setInfluencingBounds(bounds);
+        //Directional light (to be rotated).
+        Color3f lightColour = new Color3f(1.0f, 1.0f, 1.0f);
+        Vector3f lightDir = new Vector3f(0.0f, 0.0f, -1.0f);
+        DirectionalLight light = new DirectionalLight(lightColour, lightDir);
+        light.setInfluencingBounds(bounds);
 
-        bgLight.addChild(light1);
+        //The transformation group for the directional light and its rotation.
+        TransformGroup tfmLight = new TransformGroup();
+        tfmLight.addChild(light);
 
-        //Ambient light.
-        Color3f ambientLightColour = new Color3f(0.5f, 0.5f, 0.5f);
-        AmbientLight ambLight = new AmbientLight(ambientLightColour);
-        ambLight.setInfluencingBounds(bounds);
-        bgLight.addChild(ambLight);
+        //The Alpha for the rotation.
+        Alpha alphaLight = new Alpha(-1, 4000);
+        //The rotation
+        RotationInterpolator rot = new RotationInterpolator(alphaLight, tfmLight,
+                new Transform3D(),
+                0.0f, (float) Math.PI * 2);
+        rot.setSchedulingBounds(bounds);
+
+        tfmLight.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        tfmLight.addChild(rot);
+
+        bgLight.addChild(tfmLight);
+
+        //Light no. 3: a spotlight.
+        Color3f lightColour3 = new Color3f(1f, 1f, 1f);
+        SpotLight light3 = new SpotLight(lightColour3,
+                new Point3f(0.0f, 0.0f, 1.0f),
+                new Point3f(0.1f, 0.1f, 0.01f),
+                new Vector3f(0.0f, 0.0f, -1.0f),
+                (float) (Math.PI / 20),
+                0.0f);
+
+        light3.setInfluencingBounds(bounds);
+        bgLight.addChild(light3);
+
+        //Light no. 4: ambient light.
+        Color3f lightColour4 = new Color3f(0.2f, 0.2f, 0.2f);
+        AmbientLight light4 = new AmbientLight(lightColour4);
+        light4.setInfluencingBounds(bounds);
+        bgLight.addChild(light4);
 
         su.addBranchGraph(bgLight);
-
     }
-
 }

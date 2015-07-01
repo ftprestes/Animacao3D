@@ -83,7 +83,7 @@ public class Animacao extends JFrame {
             capitao = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/America/Captain_America_The_First_Avenger.obj");
             capitao2 = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/America/capitao.obj");
             hulk = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Hulk/hulk.obj");
-            carro = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Car/car.obj");
+            carro = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Car/Camaro 2009/Chevrolet Camaro 2009.obj");
             doom = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Doom/Doctor_Doom.obj");
             ironMan = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Ironman/ironMAn.obj");
             thor = f.load("/home/prestes/NetBeansProjects/Animacao/Objetos/Thor/Thor_Avengers.obj");
@@ -137,9 +137,9 @@ public class Animacao extends JFrame {
         
         //modificações carro
         Transform3D carroObject = new Transform3D();
-        carroObject.rotY(Math.PI * 0.7);
-        carroObject.setScale(5);
-        carroObject.setTranslation(new Vector3f(3f, -3f, -30f));
+        carroObject.rotY(Math.PI * 0.15);
+        carroObject.setScale(3);
+        carroObject.setTranslation(new Vector3f(0f, -3f, -30f));
        
         //criação do grupo capitao
         TransformGroup capitaoGroup = new TransformGroup(capitaoObject);
@@ -380,10 +380,11 @@ public class Animacao extends JFrame {
         TransformGroup carroGoup = new TransformGroup(carroObject);
         TransformGroup allCarroObjects = new TransformGroup();
         //movimento do carro
-        Alpha alphaCarro = new Alpha(1, Alpha.INCREASING_ENABLE, 9200, 500, 2000, 10000, 0, 0, 0, 0);
-        Transform3D axisCarro = new Transform3D();   
+        Alpha alphaCarro = new Alpha(1, Alpha.INCREASING_ENABLE, 8700, 500, 2000, 10000, 0, 0, 0, 0);
+        Transform3D axisCarro = new Transform3D(); 
+        axisCarro.rotY(Math.PI/0.65);
         PositionInterpolator carroMovement = new PositionInterpolator
-            (alphaCarro, allCarroObjects, axisCarro, 0f, -1f);
+            (alphaCarro, allCarroObjects, axisCarro, 0f, 1.4f);
         allCarroObjects.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
         carroMovement.setSchedulingBounds(boundsHulk);
         carroGoup.addChild(allCarroObjects);
